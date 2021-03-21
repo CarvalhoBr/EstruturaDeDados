@@ -66,6 +66,16 @@ int indexOf(struct Set *set, int element){
     return -1;
 }
 
+int smallerValue(struct Set *set){
+    int smaller = set->data[0];
+    for (int i = 0; i < set->size; i++){
+        if(set->data[i] < smaller){
+            smaller = set->data[i];
+        }
+    }
+    return smaller;
+}
+
 int main(void){
 
     struct Set *set = initialize();
@@ -87,5 +97,12 @@ int main(void){
     index = indexOf(set, 5);
     printf("Caso o elemento pertença é retornado a posição dele na coleção. Exemplo: indexOf(set, 5) = %d\n", index);
     
+    push(set, 9);
+    push(set, 1);
+    push(set, 6);
+
+    int smaller = smallerValue(set); 
+    printf("Testando o menor valor, esperado: 1, retorno: %d\n", smaller);
+
     return 0;
 }
