@@ -56,6 +56,16 @@ void pop(struct Set *set, int index){
     
 }
 
+int indexOf(struct Set *set, int element){
+    for (int i = 0; i < set->size; i++)
+    {
+        if(set->data[i] == element){
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main(void){
 
     struct Set *set = initialize();
@@ -68,6 +78,14 @@ int main(void){
 
     pop(set, 1);
     printf("Removendo ultimo elemento, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
+
+    push(set, 5);
+
+    printf("Testando se o elemento 15 pertence ao conjunto\n");
+    int index = indexOf(set, 15);
+    printf("Caso o elemento não pertença o resultado é: %d\n", index);
+    index = indexOf(set, 5);
+    printf("Caso o elemento pertença é retornado a posição dele na coleção. Exemplo: indexOf(set, 5) = %d\n", index);
     
     return 0;
 }
