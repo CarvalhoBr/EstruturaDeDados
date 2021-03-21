@@ -26,6 +26,8 @@ void push(struct Set *set, int element){
     }
 
     newData[set->size-1] = element;
+
+    free(set->data);
     set->data = newData;
 
     return;  
@@ -50,6 +52,9 @@ void pop(struct Set *set, int index){
         oldIndex++;
         newIndex++;
     }
+    free(set->data);
+    set->data = newData;
+    
     return;
 }
 
