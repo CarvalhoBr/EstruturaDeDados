@@ -76,33 +76,96 @@ int smallerValue(struct Set *set){
     return smaller;
 }
 
+struct Set* setUnion(struct Set *set1, struct Set *set2){
+    struct Set *newSet = (struct Set*)malloc(sizeof(struct Set));
+    newSet->size = ((set1->size + set2->size));
+    newSet->data = (int*) malloc((set1->size + set2->size));
+
+    int index = 0;
+    for (int i = 0; i < set1->size; i++)
+    {
+        newSet->data[index] = set1->data[i];
+        index++;
+    }
+    for (int j = 0; j < set2->size; j++)
+    {
+        newSet->data[index] = set2->data[j];
+        index++;
+    }
+
+    return newSet;
+    
+}
+
+void printSet(struct Set *set){
+    printf("Tamanho do conjunto: %d\n", set->size);
+    printf("[");
+    for (int i = 0; i < set->size; i++)
+    {
+        printf(" %d,", set->data[i]);
+    }
+    printf("]\n");
+    return;
+}
 int main(void){
 
     struct Set *set = initialize();
     printf("Conjunto inicializado, tamanho: %d\n", set->size);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
 
     push(set, 3);
     printf("Adicionado 3, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
     push(set, 5);
     printf("Adicionado 5, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
 
+    printf("\n-------------------------------------------------------------------------------\n\n");
+
     pop(set, 1);
     printf("Removendo ultimo elemento, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
 
     push(set, 5);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
 
     printf("Testando se o elemento 15 pertence ao conjunto\n");
     int index = indexOf(set, 15);
     printf("Caso o elemento não pertença o resultado é: %d\n", index);
     index = indexOf(set, 5);
     printf("Caso o elemento pertença é retornado a posição dele na coleção. Exemplo: indexOf(set, 5) = %d\n", index);
-    
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
+
     push(set, 9);
     push(set, 1);
     push(set, 6);
 
     int smaller = smallerValue(set); 
     printf("Testando o menor valor, esperado: 1, retorno: %d\n", smaller);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
+
+    printf("Printando o conjunto: \n");
+    printSet(set);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
+
+    struct Set *set2 = initialize();
+    push(set2, 80);
+    push(set2, 12);
+    push(set2, 13);
+    push(set2, 7);
+
+    printf("Conjunto 1: \n");
+    printSet(set);
+    printf("Conjunto 2: \n");
+    printSet(set2);
+
+    struct Set *bigSet = setUnion(set, set2);
+    printf("União dos dois conjuntos: \n");
+    printSet(bigSet);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
 
     return 0;
 }
