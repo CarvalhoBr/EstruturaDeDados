@@ -6,8 +6,10 @@ struct Set{
     int size;
 };
 
-struct Set* initialize(){
-    struct Set *set = (struct Set *) malloc(sizeof(struct Set));
+typedef struct Set Set;
+
+Set* initialize(){
+    Set *set = (Set *) malloc(sizeof(Set));
     if(set != NULL){
         set->data = NULL;
         set->size = 0;
@@ -16,7 +18,7 @@ struct Set* initialize(){
     return NULL;
 } 
 
-void push(struct Set *set, int element){
+void push(Set *set, int element){
     set->size += 1;
     int *newData = (int *) malloc(sizeof(int) * set->size);
 
@@ -33,7 +35,7 @@ void push(struct Set *set, int element){
     return;  
 };
 
-void pop(struct Set *set, int index){
+void pop(Set *set, int index){
     if(index > (set->size-1)){
         return;
     }
@@ -54,11 +56,11 @@ void pop(struct Set *set, int index){
     }
     free(set->data);
     set->data = newData;
-    
+
     return;
 }
 
-int indexOf(struct Set *set, int element){
+int indexOf(Set *set, int element){
     for (int i = 0; i < set->size; i++)
     {
         if(set->data[i] == element){
@@ -68,7 +70,7 @@ int indexOf(struct Set *set, int element){
     return -1;
 }
 
-int smallerValue(struct Set *set){
+int smallerValue(Set *set){
     int smaller = set->data[0];
     for (int i = 0; i < set->size; i++){
         if(set->data[i] < smaller){
@@ -98,7 +100,7 @@ struct Set* setUnion(struct Set *set1, struct Set *set2){
     return newSet; 
 }
 
-void printSet(struct Set *set){
+void printSet(Set *set){
     printf("Tamanho do conjunto: %d\n", set->size);
     printf("[");
     for (int i = 0; i < set->size; i++)
@@ -109,7 +111,7 @@ void printSet(struct Set *set){
     return;
 }
 
-int isSameSet(struct Set *set1, struct Set *set2){
+int isSameSet(Set *set1, Set *set2){
     if(set1->size != set2->size){
         return 0;
     }
@@ -122,6 +124,6 @@ int isSameSet(struct Set *set1, struct Set *set2){
     return 1;
 }
 
-int isEmptySet(struct Set *set){
+int isEmptySet(Set *set){
     return set->size == 0? 1:0;
 }

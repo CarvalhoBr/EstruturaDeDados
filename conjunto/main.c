@@ -4,7 +4,7 @@
 
 int main(void){
 
-    struct Set *set = initialize();
+    Set *set = initialize();
     printf("Conjunto inicializado, tamanho: %d\n", set->size);
 
     printf("\n-------------------------------------------------------------------------------\n\n");
@@ -45,7 +45,7 @@ int main(void){
 
     printf("\n-------------------------------------------------------------------------------\n\n");
 
-    struct Set *set2 = initialize();
+    Set *set2 = initialize();
     push(set2, 80);
     push(set2, 12);
     push(set2, 13);
@@ -56,7 +56,7 @@ int main(void){
     printf("Conjunto 2: \n");
     printSet(set2);
 
-    struct Set *bigSet = setUnion(set, set2);
+    Set *bigSet = setUnion(set, set2);
     printf("União dos dois conjuntos: \n");
     printSet(bigSet);
 
@@ -71,7 +71,7 @@ int main(void){
     printf("\n-------------------------------------------------------------------------------\n\n");
 
     printf("Testando se um conjunto é vazio: \n");
-    struct Set *emptySet = initialize();
+    Set *emptySet = initialize();
     int isEmpty = isEmptySet(emptySet);
     printf("Caso seja vazio o resultado é: %d\n", isEmpty);
     isEmpty = isEmptySet(set);
