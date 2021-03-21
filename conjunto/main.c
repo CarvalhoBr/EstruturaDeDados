@@ -122,6 +122,10 @@ int isSameSet(struct Set *set1, struct Set *set2){
     
 }
 
+int isEmptySet(struct Set *set){
+    return set->size == 0? 1:0;
+}
+
 int main(void){
 
     struct Set *set = initialize();
@@ -187,6 +191,15 @@ int main(void){
     printf("Caso sejam iguais o resultado é: %d\n", isEqual);
     isEqual = isSameSet(set, set2);
     printf("Caso sejam diferentes o resultado é: %d\n", isEqual);
+
+    printf("\n-------------------------------------------------------------------------------\n\n");
+
+    printf("Testando se um conjunto é vazio: \n");
+    struct Set *emptySet = initialize();
+    int isEmpty = isEmptySet(emptySet);
+    printf("Caso seja vazio o resultado é: %d\n", isEmpty);
+    isEmpty = isEmptySet(set);
+    printf("Caso não seja vazio o resultado é: %d\n", isEmpty);
 
 
     return 0;
