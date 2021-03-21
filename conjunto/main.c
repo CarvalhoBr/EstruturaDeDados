@@ -107,6 +107,21 @@ void printSet(struct Set *set){
     printf("]\n");
     return;
 }
+
+int isSameSet(struct Set *set1, struct Set *set2){
+    if(set1->size != set2->size){
+        return 0;
+    }
+    for (int i = 0; i < set1->size; i++)
+    {
+        if(set1->data[i] != set2->data[i]){
+            return 0;
+        }
+    }
+    return 1;
+    
+}
+
 int main(void){
 
     struct Set *set = initialize();
@@ -166,6 +181,13 @@ int main(void){
     printSet(bigSet);
 
     printf("\n-------------------------------------------------------------------------------\n\n");
+
+    printf("Testando se dois conjuntos são exatamente iguais: \n");
+    int isEqual = isSameSet(set, set);
+    printf("Caso sejam iguais o resultado é: %d\n", isEqual);
+    isEqual = isSameSet(set, set2);
+    printf("Caso sejam diferentes o resultado é: %d\n", isEqual);
+
 
     return 0;
 }
