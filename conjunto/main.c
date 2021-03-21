@@ -33,6 +33,29 @@ void push(struct Set *set, int element){
       
 };
 
+void pop(struct Set *set, int index){
+    if(index > (set->size-1)){
+        return;
+    }
+    int *newData = (int *)malloc(sizeof(set->size-1));
+    set->size -= 1;
+
+    int oldIndex, newIndex = 0;
+    while (oldIndex < set->size)
+    {
+        if(oldIndex == index){
+            oldIndex++;
+            continue;
+        }
+        newData[newIndex] = set->data[oldIndex];
+
+        oldIndex++;
+        newIndex++;
+    }
+    return;
+    
+}
+
 int main(void){
 
     struct Set *set = initialize();
@@ -40,5 +63,11 @@ int main(void){
 
     push(set, 3);
     printf("Adicionado 3, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
+    push(set, 5);
+    printf("Adicionado 5, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
+
+    pop(set, 1);
+    printf("Removendo ultimo elemento, tamanho: %d, ultimo elemento: %d\n", set->size, set->data[set->size-1]);
+    
     return 0;
 }
